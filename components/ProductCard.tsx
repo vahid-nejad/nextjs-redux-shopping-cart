@@ -1,6 +1,7 @@
 import { Product } from "interfaces";
 import Image from "next/image";
 import React from "react";
+import AddToCartBtn from "./AddToCartBtn";
 
 interface Props {
   product: Product;
@@ -8,16 +9,18 @@ interface Props {
 }
 const ProductCard = (props: Props) => {
   return (
-    <div className={`border rounded-md p-2 shadow hover:shadow-lg trasnsition`}>
+    <div className={`border rounded-md shadow hover:shadow-lg trasnsition overflow-hidden`}>
       <Image
-        src={`https://picsum.photos/id/${Math.round(Math.random() * 100)}/400/300`}
+        src={props.product.imgPath}
         height={300}
         width={400}
         alt={`Image of ${props.product.name}`}
       />
-
-      <h6>{props.product.name}</h6>
-      <p>{props.product.price} $</p>
+      <div className="p-2">
+        <h6>{props.product.name}</h6>
+        <p>{props.product.price} $</p>
+        <AddToCartBtn product={props.product} />
+      </div>
     </div>
   );
 };
