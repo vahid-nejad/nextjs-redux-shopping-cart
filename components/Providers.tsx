@@ -7,7 +7,9 @@ interface Props {
   children: React.ReactNode;
 }
 const Providers = (props: Props) => {
-  return <Provider store={store}>{props.children}</Provider>;
+  return (
+    <Provider store={store}>{props.children}</Provider>
+  );
 };
 
 export default Providers;

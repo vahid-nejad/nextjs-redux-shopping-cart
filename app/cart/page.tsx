@@ -1,24 +1,29 @@
 "use client";
-
-import CartItemContainer from "components/CartItemContainer";
+import CartItemCard from "components/CartItemCard";
 import React from "react";
 import { TotalPriceSelector } from "store/features/cartSlice";
 import { useAppSelector } from "store/store";
 
-const page = () => {
-  const cartItems = useAppSelector((state) => state.cart.cartItems);
-  const totalPrice = useAppSelector(TotalPriceSelector);
+const CartPage = () => {
+  const cartItems = useAppSelector(
+    (state) => state.cart.cartItems
+  );
 
+  const totalPrice = useAppSelector(TotalPriceSelector);
   return (
-    <div className="p-2 ">
+    <div className="p-2">
       {cartItems.map((item) => (
-        <CartItemContainer cartItem={item} key={item.product.id} />
+        <CartItemCard cartItem={item} />
       ))}
+
       <p className="text-slate-600">
-        Total Price: <span className="text-slate-900 font-bold">{totalPrice} $</span>
+        Total Price:{" "}
+        <span className="text-slate-900 font-bold">
+          {totalPrice} $
+        </span>
       </p>
     </div>
   );
 };
 
-export default page;
+export default CartPage;
